@@ -16,5 +16,8 @@ public class grammerTest {
         System.out.println(5/2);
 //        System.out.println(arr[0]);
         System.out.println("测试git");
+
+        int temp=3;
+        System.out.println(temp%10);
     }
 }
