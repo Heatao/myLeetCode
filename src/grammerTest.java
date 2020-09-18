@@ -10,14 +10,6 @@
 public class grammerTest {
 
     public static void main(String[] args) {
-        int[] arr = new int[]{};
-//        int [] arr;
-        System.out.println(arr.length);
-        System.out.println(5/2);
-//        System.out.println(arr[0]);
-        System.out.println("测试git");
-
-        int temp=3;
-        System.out.println(temp%10);
+        System.out.println("Test: ");
     }
 }
