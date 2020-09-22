@@ -13,6 +13,6 @@
 public class grammerTest {
 
     public static void main(String[] args) {
-        System.out.println("Test: ");
+        System.out.println("Test: "+Math.abs(1 - 0 - 1 - 2));
     }
 }
