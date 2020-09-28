@@ -41,6 +41,11 @@ public class mergeTwoLists {
      * 结束递归调用时 mergeTwoLists 函数最多调用 n+mn+m 次，因此空间复杂度为 O(n+m)O(n+m)
      *
      */
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2){
+        //...
+        return null;
+    }
+
     public ListNode official_mergeTwoLists(ListNode l1, ListNode l2) {
         if (l1 == null) {
             return l2;
