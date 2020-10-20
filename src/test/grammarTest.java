@@ -10,8 +10,10 @@ package test;
  *
  * 用哪种数据结构：栈，堆，队列，数组。用什么方式：迭代，递归，贪心，DP，分治...
  * 是否需要考虑所有组合，如何去除冗余
+ *
+ * 在30题接触到了新的方法：滑动窗口
  * */
-public class grammerTest {
+public class grammarTest {
 
     public static void main(String[] args) {
         System.out.println("Test: "+Math.abs(1 - 0 - 1 - 2));
