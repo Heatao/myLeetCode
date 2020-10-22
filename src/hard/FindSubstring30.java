@@ -22,6 +22,8 @@ public class FindSubstring30 {
      *  然后每次判断len长度的子字符串是否存在于map1中，不是就跳出；
      *  当遍历到末尾的时候表示这段窗口就是我们要找的答案，记录左指针的index即可。
      *  链接：https://www.jianshu.com/p/ffc185da44c0
+     *
+     *  回过头来看这些题解，发现也是符合卜老师所说，从一个最笨的方法入手，暴力入手，然后去优化的！
      */
     public static List<Integer> others_findSubstring(String s, String[] words) {
         List<Integer> res = new ArrayList<>();
