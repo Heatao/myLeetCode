@@ -35,6 +35,7 @@ public class SearchRange34 {
         if (nums[start] == target)
             return start;
 
+        //下面的写法可能会导致整数溢出，最好是medium = start + (end - start) / 2
         int medium = (end+start) / 2;
         if (nums[medium] >= target){
             //优先判断左边部分
@@ -59,6 +60,13 @@ public class SearchRange34 {
         else return dichotomyRight(nums, target, start, medium-1);
     }
 
+    /**
+     * 回过头来看，自己这个二分写得太不好了，首先是一些细节没有考虑到，比如medium，其次最好不要用递归
+     * 并且再Right递归的时候，还需要判断只剩两个数的情况...
+     * 多加练习啊！
+     * 二分查找有几种写法？它们的区别是什么？ - Jason Li的回答 - 知乎
+     * https://www.zhihu.com/question/36132386/answer/530313852
+     */
     public static void main(String[] args) {
         int[] nums = {5,7,7,8,8,10};
         System.out.println(Arrays.toString(searchRange(nums, 8)));
