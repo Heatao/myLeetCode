@@ -17,5 +17,10 @@ public class grammarTest {
 
     public static void main(String[] args) {
         System.out.println("Test: "+Math.abs(1 - 0 - 1 - 2));
+        char num1 = '8';
+        System.out.println(num1);
+        int num1_1 = num1;
+        System.out.println(num1_1);
+        System.out.println(num1-'0');
     }
 }
