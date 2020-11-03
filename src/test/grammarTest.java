@@ -1,5 +1,8 @@
 package test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 写给自己的提醒事项：
  * 1.写代码之前先捋清思路，然后用注释写上每个步骤
@@ -22,5 +25,14 @@ public class grammarTest {
         int num1_1 = num1;
         System.out.println(num1_1);
         System.out.println(num1-'0');
+
+        //下面没有使用菱形语法指定类型，但是为什么不报错呢
+        //因为下面的部分默认为<Object>
+        List list1 = new ArrayList();
+        list1.add(1);
+        Integer numTest = (Integer) list1.get(0);       //取值必须要强制类型转换，所以很麻烦，见Java核心技术P327
+        list1.add('a');
+        System.out.println(list1);
+        System.out.println(list1.getClass().getName().toString());
     }
 }

@@ -46,10 +46,11 @@ public class CombinationSum39 {
     /**
      * idx记录开始的位置
      * */
-    public void recurCombination(int[] candidates, int remainTarget, List<List<Integer>> combinationsResult,
+    private void recurCombination(int[] candidates, int remainTarget, List<List<Integer>> combinationsResult,
                                  List<Integer> combination, int idx) {
-        if (idx == candidates.length)
-            return;
+        //下面这两行没有必要存在
+//        if (idx == candidates.length)
+//            return;
         if (remainTarget == 0) {
             ///区别在于这里没有用combination的空间，因为传参的combination列表是复用的
             combinationsResult.add(new ArrayList<>(combination));
