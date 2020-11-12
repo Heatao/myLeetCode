@@ -34,5 +34,11 @@ public class grammarTest {
         list1.add('a');
         System.out.println(list1);
         System.out.println(list1.getClass().getName().toString());
+
+        System.out.println(62%10);
+        System.out.println(('3'-'0')*4);
+        System.out.println((char)(56+'0'));
+        System.out.println(186%10);
+        System.out.println(1%10);
     }
 }
