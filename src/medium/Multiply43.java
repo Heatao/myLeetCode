@@ -62,7 +62,6 @@ public class Multiply43 {
                 if (leftNumn != 0) {
                     if (resultList[thisIndex-1] != 'a') {
                         //同样的道理，初始化之后可能会溢出
-//                        resultList[thisIndex-1] = (char)(resultList[thisIndex-1] + leftNumn);
                         if (resultList[thisIndex-1] + leftNumn > 57){
                             resultList[thisIndex-1] = (char)(resultList[thisIndex-1] + leftNumn - 10);
                             if (resultList[thisIndex-2] != 'a') {
