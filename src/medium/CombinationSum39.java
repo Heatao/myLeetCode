@@ -60,6 +60,7 @@ public class CombinationSum39 {
             if (remainTarget-candidates[i] >= 0){
                 combination.add(candidates[i]);
                 recurCombination(candidates, remainTarget-candidates[i], combinationsResult, combination, i);
+                //下面这一句是精髓，"回溯"！
                 combination.remove(combination.size()-1);
             }
         }
