@@ -8,7 +8,7 @@ import java.util.List;
  * 给定一个 没有重复 数字的序列，返回其所有可能的全排列。
  * 注意全排列是有顺序的，123和132不一样！
  */
-public class Permute44 {
+public class Permute46 {
     /**
      * 下面这段代码是彻头彻尾的错误
      * 首先最重要的就是：根本没有回溯，只是在无限递归罢了
@@ -46,8 +46,8 @@ public class Permute44 {
     }
 
     public static void main(String[] args) {
-        Permute44 permute44 = new Permute44();
+        Permute46 permute46 = new Permute46();
         int[] nums = {1,2,3};
-        System.out.println(permute44.mySolution_permute(nums));
+        System.out.println(permute46.mySolution_permute(nums));
     }
 }
