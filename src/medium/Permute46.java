@@ -50,4 +50,33 @@ public class Permute46 {
         int[] nums = {1,2,3};
         System.out.println(permute46.mySolution_permute(nums));
     }
+
+    /**
+     * 半年后回过头来看，这个题应该像官方题解那样，脑子转一下弯去理解，将其看作是把数填进去，而不是数的交换
+     * 下面是powcai的题解
+     */
+    public List<List<Integer>> others_permute(int[] nums) {
+
+        List<List<Integer>> res = new ArrayList<>();
+        int[] visited = new int[nums.length];
+        backtrack(res, nums, new ArrayList<Integer>(), visited);
+        return res;
+
+    }
+
+    private void backtrack(List<List<Integer>> res, int[] nums, ArrayList<Integer> tmp, int[] visited) {
+        if (tmp.size() == nums.length) {
+            res.add(new ArrayList<>(tmp));
+            return;
+        }
+        //这里从0开始是其核心
+        for (int i = 0; i < nums.length; i++) {
+            if (visited[i] == 1) continue;
+            visited[i] = 1;
+            tmp.add(nums[i]);
+            backtrack(res, nums, tmp, visited);
+            visited[i] = 0;
+            tmp.remove(tmp.size() - 1);
+        }
+    }
 }
