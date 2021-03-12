@@ -5,13 +5,13 @@ package medium;
  *
  */
 public class RotateRight61 {
-    private class ListNode {
-        int val;
-        ListNode next;
-        ListNode() {}
-        ListNode(int val) { this.val = val; }
-        ListNode(int val, medium.ListNode next) { this.val = val; this.next = next; }
-    }
+//    private class ListNode {
+//        int val;
+//        ListNode next;
+//        ListNode() {}
+//        ListNode(int val) { this.val = val; }
+//        ListNode(int val, medium.ListNode next) { this.val = val; this.next = next; }
+//    }
 
     /**
      * 我朴素的想法：先连成一个环，然后确定最后一位断开，返回新的head
