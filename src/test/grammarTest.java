@@ -2,6 +2,8 @@ package test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * 写给自己的提醒事项：
@@ -40,5 +42,9 @@ public class grammarTest {
         System.out.println((char)(56+'0'));
         System.out.println(186%10);
         System.out.println(1%10);
+
+        //用Java8 stream生成自然数
+        List<Integer> range = IntStream.rangeClosed(1, 10)
+                .boxed().collect(Collectors.toList());
     }
 }
