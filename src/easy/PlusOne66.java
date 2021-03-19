@@ -20,8 +20,6 @@ import java.util.Arrays;
 public class PlusOne66 {
     /**
      * 这个题不能用parseLong或者parseInt，因为测试用例会非常大
-     * @param digits
-     * @return
      */
     public int[] plusOne(int[] digits) {
         StringBuilder sb = new StringBuilder();
@@ -33,6 +31,7 @@ public class PlusOne66 {
         bint = bint.add(new BigInteger("1"));
         tmpStr = String.valueOf(bint.toString());
         String[] tmpList = tmpStr.split("");
+        //这里，因为是数组，所以用Arrays.stream,用Stream.of也是一样的，因为stream.of对于数组类型也是用的前者
         return Arrays.stream(tmpList).mapToInt(Integer::parseInt).toArray();
     }
 
