@@ -46,5 +46,7 @@ public class grammarTest {
         //用Java8 stream生成自然数
         List<Integer> range = IntStream.rangeClosed(1, 10)
                 .boxed().collect(Collectors.toList());
+
+        System.out.println("Time: "+ System.currentTimeMillis());
     }
 }
