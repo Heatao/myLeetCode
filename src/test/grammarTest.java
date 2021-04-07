@@ -48,5 +48,6 @@ public class grammarTest {
                 .boxed().collect(Collectors.toList());
 
         System.out.println("Time: "+ System.currentTimeMillis());
+        Integer a = Integer.valueOf(100);
     }
 }
