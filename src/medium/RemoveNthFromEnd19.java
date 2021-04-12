@@ -6,7 +6,8 @@ import java.util.Map;
 class ListNode {
     int val;
     ListNode next;
-    ListNode(int x) { val = x; }
+    ListNode(int x) { this.val = x; }
+    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
 }
 
 /**
@@ -16,7 +17,7 @@ class ListNode {
  * 当删除了倒数第二个节点后，链表变为 1->2->3->5.
  * 保证n是有效的
  */
-public class removeNthFromEnd {
+public class RemoveNthFromEnd19 {
     /**
      * 要求一遍实现，而且还不是用的ArrayList或者LinkedList，那就只能Hash了
      * @param head
