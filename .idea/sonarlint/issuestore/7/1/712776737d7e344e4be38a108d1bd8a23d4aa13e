@@ -1,7 +1,0 @@
-
-b	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Š•ÄÈ
-m	java:S127"XRefactor the code in order to not assign to this loop counter from within the loop body.(Ì‚ˆÌ
-h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í¹½Òÿÿÿÿÿ
-?
-java:S1659")Declare "haystackLen" on a separate line.(Ê©­ñ
-V	java:S125"<This block of commented-out lines of code should be removed.(ž÷‡íøÿÿÿÿ
