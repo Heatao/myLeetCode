@@ -28,6 +28,7 @@ public class SubsetsWithDup90 {
             //下面这里非常精妙，i > start，而非i-1 >= 0
             //i > start保证了122的第二个2也会被放进tempList
             //要理解，因为递归的存在，所以每一层的backtrack其实是保证了固定数字的哦，也就是说，只要保证这一层的for循环不会挑到重复的就行啦，好好理解！！！
+            //因为马上就会remove哒，所以添加长度是在内层的backtrack
             if (i > start && nums[i] == nums[i-1])
                 continue;
             tempList.add(nums[i]);
