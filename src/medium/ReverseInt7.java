@@ -12,7 +12,7 @@ package medium;
  *
  * 知识点：整数溢出，int y=-x时，如果x在二进制反转时溢出，则y不会是x的相反数
  */
-public class reverseInt {
+public class ReverseInt7 {
     public static int mySolution_reverse(int x) {
         int tag = 1;
         long y;
