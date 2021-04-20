@@ -18,6 +18,8 @@ public class IsScramble87 {
     /*
     直觉反应需要枚举所有情况，用回溯考虑呢
     我本来的想法是用s1去变化所有的情况，看是否有一种等于s2
+
+    下面的写法很妙，但是超时了
      */
     public boolean isScramble(String s1, String s2) {
         if (s1.length() != s2.length()) return false;
