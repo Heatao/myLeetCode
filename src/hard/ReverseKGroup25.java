@@ -1,7 +1,15 @@
 package hard;
 
-import java.util.List;
+import java.awt.*;
 
+/**
+ * 20210422坐公交看到脉脉上面说字节面试这道题，在车上自己琢磨（加百度），想到三种做法
+ * 1. 先遍历一遍链表得到长度，写一个反转函数(cur, k)，链表前面超过k的部分直接反转
+ * 2. 不需先遍历一遍，反转函数(curpre, lat)，传入应该反转的部分的前一个节点和后一个节点，主函数用for循环判断长度是否为k。来自coordinate_blog
+ * 3. 递归反转链表，因为链表是一种兼具递归和迭代性质的数据结构。这个做法其实和2一样，也需要latter节点
+ *
+ * 这个题的难点在于，第一次反转k个之后，preNode，cur应该变成什么，因为反转之后会改变哒！要么用retain来保留，要么返回一个List
+ */
 public class ReverseKGroup25 {
     /**
      * 心态崩了，感觉下面的代码应该也有bug，但是OJ超时，逻辑和官方题解是一样的
@@ -101,5 +109,61 @@ public class ReverseKGroup25 {
             p = nex;
         }
         return new ListNode[]{tail, head};
+    }
+
+    public ListNode reverseKGroup_try0422(ListNode head, int k) {
+        ListNode preNode = new ListNode(-1);
+        preNode.next = head;
+        ListNode hair = preNode;
+        ListNode latNode;
+        ListNode cur = head;
+
+        int i = 1;
+        while (cur != null) {
+            if (i == k) {
+                latNode = cur.next;
+                preNode = reverse0422(preNode, latNode);
+                //preNode = cur;    //这里极易出错，因为cur此时已经被变换了
+                cur = latNode;
+                i = 1;
+                continue;
+            }
+            cur = cur.next;
+            i++;
+        }
+        return hair.next;
+    }
+
+    private ListNode reverse0422(ListNode preNode, ListNode latNode) {
+        ListNode cur = preNode.next;
+        ListNode retainNext;
+        ListNode tail = latNode;
+
+        ListNode newPre = null;
+        while (cur != latNode) {
+            if (newPre == null)
+                newPre = cur;
+
+            retainNext = cur.next;
+            cur.next = tail;
+            tail = cur;
+            cur = retainNext;
+        }
+        preNode.next = tail;
+        return newPre;
+    }
+
+    public static void main(String[] args) {
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(4);
+        head.next.next.next.next = new ListNode(5);
+        ReverseKGroup25 reverseKGroup25 = new ReverseKGroup25();
+        head = reverseKGroup25.reverseKGroup_try0422(head, 2);
+        while (head != null) {
+            System.out.println(head.val);
+            head = head.next;
+        }
     }
 }
