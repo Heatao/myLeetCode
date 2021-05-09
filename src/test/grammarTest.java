@@ -1,8 +1,6 @@
 package test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -50,5 +48,13 @@ public class grammarTest {
 
         System.out.println("Time: "+ System.currentTimeMillis());
         Integer a = Integer.valueOf(100);
+
+        Queue<TreeNode> testQ = new LinkedList<>();
+        testQ.offer(null);
+        System.out.println(testQ.isEmpty());
+        System.out.println(testQ.poll());
+        testQ.add(null);
+        System.out.println(testQ.isEmpty());
+        System.out.println(testQ.poll());
     }
 }
