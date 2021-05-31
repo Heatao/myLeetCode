@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class LevelOrderBottom {
+public class LevelOrderBottom107 {
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
         List<List<Integer>> levelOrders = new LinkedList<>();
         if (root == null)
