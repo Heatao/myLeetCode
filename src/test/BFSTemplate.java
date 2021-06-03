@@ -24,7 +24,7 @@ public class BFSTemplate {
                 if (cur == target)
                     return step;
                 /* 将 cur 的相邻节点加入队列 */
-                for (Node x : cur.adj)
+                for (Node x : cur.neighbors)
                     if (!visited.contains(x)) {
                         q.offer(x);
                         visited.add(x);
