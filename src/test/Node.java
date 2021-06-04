@@ -9,6 +9,7 @@ public class Node {
     public Node right;
     public Node next;
     public List<Node> neighbors;
+    public Node random;
 
     public Node() {
         val = 0;
@@ -18,6 +19,7 @@ public class Node {
     public Node(int _val) {
         val = _val;
         neighbors = new ArrayList<Node>();
+        this.random = null;
     }
 
     public Node(int _val, ArrayList<Node> _neighbors) {
