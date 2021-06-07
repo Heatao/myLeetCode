@@ -5,6 +5,8 @@ import java.util.HashMap;
 /**
  * 这个题没去做，虽然想到了枚举任意两个点，但是没有想到用一个新的Pair类来表示点
  * （主要是看了CodeTop发现这道题基本没有被考过hhhh）
+ *
+ * 下面是抄的花花酱的评论区，然而还是错的orz，有空再修改吧
  */
 public class MaxPoints149 {
     class Pair {
