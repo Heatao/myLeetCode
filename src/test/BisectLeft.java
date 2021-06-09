@@ -25,7 +25,7 @@ public class BisectLeft {
             if (nums[pivot] < nums[high]) {
                 high = pivot;
             } else {
-                low = pivot + 1;
+                low = pivot + 1;                    // 这里和上面一样也是低位 + 1哟
             }
         }
         return nums[low];
