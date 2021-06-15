@@ -12,7 +12,7 @@ where e.Id in
 (
     select e1.Id
     from Employee as e1 left join Employee as e2
-    on e1.DepartmentId = e2.DepartmentId and e1.Salary < e2.Salary
+    on e1.DepartmentId = e2.DepartmentId and e1.Salary < e2.Salary      -- 这样进行自连接的话会少很多条目，性能更好
     group by e1.Id
     having count(distinct e2.Salary) <= 2
 )
