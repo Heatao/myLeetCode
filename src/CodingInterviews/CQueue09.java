@@ -3,12 +3,12 @@ package CodingInterviews;
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class CQueue {
+public class CQueue09 {
     private Deque<Integer> stack1;
     private Deque<Integer> stack2;
     private boolean orderTag;
 
-    public CQueue() {
+    public CQueue09() {
         stack1 = new LinkedList<>();
         stack2 = new LinkedList<>();
         orderTag = true;
@@ -72,7 +72,7 @@ public class CQueue {
     */
 
     public static void main(String[] args) {
-        CQueue cQueue = new CQueue();
+        CQueue09 cQueue = new CQueue09();
         System.out.println(cQueue.deleteHead());
         cQueue.appendTail(5);
         cQueue.appendTail(2);

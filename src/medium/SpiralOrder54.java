@@ -71,7 +71,7 @@ public class SpiralOrder54 {
 
         int row = 0, column = 0;
         int[][] directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};            //这里用二维数组表示方向，可以看ArrayForDirection中的描述
-      int directionIndex = 0;
+        int directionIndex = 0;
 
         for (int i = 0; i < total; i++) {
             order.add(matrix[row][column]);

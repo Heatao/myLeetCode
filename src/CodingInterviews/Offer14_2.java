@@ -6,23 +6,17 @@ public class Offer14_2 {
     public int cuttingRope(int n) {
         if (n <= 3) return n-1;
 
-        int maxNum = 1;
-        while (n >= 3) {
+        // 这里一定要设置为long，因为中间会溢出
+        long maxNum = 1;
+        while (n > 4) {
             maxNum *= 3;
             maxNum %= 1000000007;
             n -= 3;
         }
 
-        int elseNum = 1;
-        if (n  == 1) {
-            elseNum = 4;
-        }
-        else if (n  == 2) {
-            elseNum = 2;
-        }
-        maxNum *= elseNum;
+        maxNum *= n;
         maxNum %= 1000000007;
-        return maxNum;
+        return (int) maxNum;
     }
 
     public static void main(String[] args) {
