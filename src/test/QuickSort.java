@@ -19,6 +19,7 @@ public class QuickSort {
         while(start < end){
             while(nums[end] >= pivot && start < end) end--;
             nums[start] = nums[end];
+            // 如果存在重复元素的话下面需要写<=
             while(nums[start] < pivot && start < end) start++;
             nums[end] = nums[start];
         }
