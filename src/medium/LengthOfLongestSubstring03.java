@@ -13,7 +13,7 @@ import java.util.Map;
  * 输出: 3
  * 解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
  */
-public class lengthOfLongestSubstring {
+public class LengthOfLongestSubstring03 {
     public static int mySolution_lengthOfLongestSubstring(String s) {
         /**
          * 我的思路：类似于LeetCode1题，做一个map，每次只需要判断当前这个字符是否在之前的map存在，不存在，计数+1，
