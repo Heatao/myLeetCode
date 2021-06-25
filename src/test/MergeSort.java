@@ -29,7 +29,7 @@ public class MergeSort  {
      * 归并排序核心算法：合并两个有序数组，结果仍是有序。需要使用额外的数组空间，因此空间复杂度是 O(n)
      */
     private void merge(Integer[] arr, int left, int middle, int right) {
-        // 为了避免频繁分配临时数组空间，可以将临时数组空间的开辟提前到sort方法中
+        // 为了避免频繁分配临时数组空间，可以将临时数组空间的开辟提前到sort方法中，或者用一个全局变量
         int[] tmpArray = new int[arr.length];
 
         int index = left;
@@ -44,6 +44,7 @@ public class MergeSort  {
             }
         }
 
+        // 把数组剩余的部分再放入tmp
         while (leftIndex <= middle) {
             tmpArray[index++] = arr[leftIndex++];
         }
@@ -51,6 +52,7 @@ public class MergeSort  {
             tmpArray[index++] = arr[rightIndex++];
         }
 
+        // 把tmp数组的再倒腾回arr数组
         index = left;
         while (index <= right) {
             arr[index] = tmpArray[index];
