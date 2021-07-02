@@ -1,9 +1,6 @@
 package medium;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * LeetCode3.无重复字符的最长子串
@@ -88,9 +85,36 @@ public class LengthOfLongestSubstring03 {
         return maxNum;
     }
 
+    /*
+    第二次做的思路是用一个哈希set，右边先移动，遇到相同的左边再缩小
+     */
+    public static int do2nd(String s) {
+        if (s == null || s.length() == 0) return 0;
+        HashSet<Character> hashSet = new HashSet<>();
+        int left = 0, right = 0, maxLen = 0;
+        while (right < s.length()) {
+            char cur = s.charAt(right);
+            if (!hashSet.contains(cur)){
+                hashSet.add(cur);
+            }
+            else {
+                while (s.charAt(left) != cur) {
+                    hashSet.remove(s.charAt(left));
+                    left++;
+                }
+                left++;
+            }
+            maxLen = Math.max(maxLen, right-left+1);
+            right++;
+        }
+        return maxLen;
+    }
+
     public static void main(String[] args) {
         String s = "bbtablud";
+        String s1 = " ";
         System.out.println(mySolution_lengthOfLongestSubstring(s));
         System.out.println(others_lengthOfLongestSubstring(s));
+        System.out.println(do2nd(s));
     }
 }

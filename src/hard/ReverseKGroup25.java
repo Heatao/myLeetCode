@@ -160,10 +160,69 @@ public class ReverseKGroup25 {
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
         ReverseKGroup25 reverseKGroup25 = new ReverseKGroup25();
-        head = reverseKGroup25.reverseKGroup_try0422(head, 2);
-        while (head != null) {
-            System.out.println(head.val);
-            head = head.next;
+        head = reverseKGroup25.reverseKGroup_try0422(head, 5);
+        ListNode node = head;
+        while (node != null) {
+            System.out.println(node.val);
+            node = node.next;
         }
+
+        System.out.println("--------------");
+        ListNode head1 = new ListNode(1);
+        head1.next = new ListNode(2);
+        head1.next.next = new ListNode(3);
+        head1.next.next.next = new ListNode(4);
+        head1.next.next.next.next = new ListNode(5);
+        node = reverseKGroup25.do3rd(head1, 5);
+        while (node != null) {
+            System.out.println(node.val);
+            node = node.next;
+        }
+    }
+
+    private ListNode do3rd(ListNode head, int k) {
+        if (head == null || k <= 1) return head;    //  易错点3，因为反转的是时候不同的写法可能导致len=1的时候有问题
+        ListNode hair = new ListNode(0);
+        hair.next = head;
+        ListNode retainLeft = hair, retainRight, left = head, right;
+
+        while (left != null) {
+            // node得到left和right，保存right的next和left的prev
+            right = do3rd_findRight(left, k);
+            if (right == null) return hair.next;
+            else retainRight = right.next;
+
+            // 反转retainLeft和retainRight之间的节点，返回反转后retainRight的前一个节点
+            retainLeft = do3rd_reverse(retainLeft, retainRight);
+            left = retainLeft.next;
+        }
+        return hair.next;
+    }
+
+    private ListNode do3rd_findRight(ListNode node, int k) {
+        for (int i = 1; i < k; i++) {               // 易错点1
+            if (node.next == null)
+                return null;
+            node = node.next;
+        }
+        return node;
+    }
+
+    // 下面这种写法对于k==1的情况会报错
+    private ListNode do3rd_reverse(ListNode retainLeft, ListNode retainRight) {
+        ListNode prev = retainLeft.next, cur = prev.next, retain;
+        ListNode right = prev, left;
+        while (cur.next != retainRight) {
+            retain = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = retain;
+        }
+        cur.next = prev;                           // 易错点2
+
+        left = cur;
+        retainLeft.next = left;
+        right.next = retainRight;
+        return right;
     }
 }

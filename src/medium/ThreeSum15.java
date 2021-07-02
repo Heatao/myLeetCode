@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
  * 给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。
  * 注意：答案中不可以包含重复的三元组。
  */
-public class threeSum {
+public class ThreeSum15 {
     /**
      * 第一反应是哈希表，考虑有无数据结构可以解决该问题，栈，堆，链表皆不可。
      * 考虑是否所有的数都需要被访问到。
@@ -151,5 +151,9 @@ public class threeSum {
     public static void main(String[] args) {
         int[] nums = {1,-1,-1,0};
         System.out.println(mySolution_threeSum(nums));
+    }
+
+    private List<List<Integer>> do2nd(int[] nums) {
+
     }
 }
