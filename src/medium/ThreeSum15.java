@@ -150,10 +150,44 @@ public class ThreeSum15 {
 
     public static void main(String[] args) {
         int[] nums = {1,-1,-1,0};
+        int[] nums1 = {-1,0,1,2,-1,-4};
         System.out.println(mySolution_threeSum(nums));
+        System.out.println(mySolution_threeSum(nums1));
+        System.out.println(do2nd(nums));
+        System.out.println(do2nd(nums1));
     }
 
-    private List<List<Integer>> do2nd(int[] nums) {
+    // 第二次做依然没有什么好思路，看了下之前做的办法orz，其实也不复杂
+    private static List<List<Integer>> do2nd(int[] nums) {
+        List<List<Integer>> answers = new ArrayList<>();
+        if(nums == null || nums.length == 0) return answers;
 
+        List<Integer> tmp = new ArrayList<>();
+        Arrays.sort(nums);
+
+        int first = 0, second = 0;
+        int thirdIndex;
+        // 遍历每一个数字进行组合
+        for(int i = 0; i < nums.length-2 && nums[i] <= 0; i++) {                        // 可优化点
+            first = nums[i];
+            if(i-1 >= 0 && first == nums[i-1]) continue;                                // 易错点1
+
+            thirdIndex = nums.length-1;
+            for(int j = i+1; j < nums.length; j++) {
+                second = nums[j];
+                if(j-1 > i && second == nums[j-1]) continue;
+
+                while (j < thirdIndex && second + nums[thirdIndex] > -first)            // 易错点2
+                    thirdIndex--;
+                if (j < thirdIndex && second + nums[thirdIndex] == -first) {            // 易错点3
+                    tmp.clear();
+                    tmp.add(first);
+                    tmp.add(second);
+                    tmp.add(nums[thirdIndex]);
+                    answers.add(new ArrayList<>(tmp));
+                }
+            }
+        }
+        return answers;
     }
 }

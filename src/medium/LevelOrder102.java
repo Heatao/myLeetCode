@@ -41,4 +41,24 @@ public class LevelOrder102 {
         }
         return levelValues;
     }
+
+    private List<List<Integer>> dp2nd(TreeNode root) {
+        List<List<Integer>> levels = new ArrayList<>();
+        if(root == null) return levels;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        int len;
+        while(!queue.isEmpty()) {
+            List<Integer> tmpList = new ArrayList<>();
+            len = queue.size();
+            for(int i = 0; i < len; i++) {           // 这里不能写size()，size()每次判断的值不同
+                TreeNode node = queue.poll();
+                tmpList.add(node.val);
+                if (node.left != null) queue.offer(node.left);
+                if (node.right != null) queue.offer(node.right);
+            }
+            levels.add(tmpList);
+        }
+        return levels;
+    }
 }

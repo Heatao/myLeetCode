@@ -35,4 +35,38 @@ public class GetIntersectionNode160 {
         }
         return head;
     }
+
+    public ListNode do2nd(ListNode headA, ListNode headB) {
+        if(headA == null || headB == null) return null;
+        // 我踏遍每一寸土地，只为了寻找你
+        int lenA = 0, lenB = 0;
+        ListNode node1 = headA, node2 = headB;
+        while(node1 != null) {
+            lenA++;
+            node1 = node1.next;
+        }
+        while(node2 != null) {
+            lenB++;
+            node2 = node2.next;
+        }
+
+        node1 = headB;
+        node2 = headA;
+        while(lenA > lenB) {
+            node2 = node2.next;
+            lenA--;
+        }
+        while(lenB > lenA) {
+            node1 = node1.next;
+            lenB--;
+        }
+
+        while(node1 != null) {
+            if(node1 == node2) return node1;
+            node1 = node1.next;
+            node2 = node2.next;
+        }
+
+        return null;
+    }
 }

@@ -13,7 +13,7 @@ class ListNode {
  * LeetCode21.合并两个有序链表
  * 将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
  */
-public class mergeTwoLists {
+public class MergeTwoLists21 {
     public ListNode mySolution_mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode dummyNode = new ListNode();
         ListNode tmpNode = dummyNode;

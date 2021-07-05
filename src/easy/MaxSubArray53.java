@@ -58,4 +58,21 @@ public class MaxSubArray53 {
         int mSum = Math.max(Math.max(l.mSum, r.mSum), l.rSum + r.lSum);
         return new Status(lSum, rSum, mSum, iSum);
     }
+
+    /**
+     * 再一次做，连DP的暗示都没读出来，甚至不如第一次
+     * 看评论有人说也可以用greedy，有的要求返回数组的，用greedy貌似比较何时
+     */
+    private int do2nd(int[] nums) {
+        if(nums == null || nums.length == 0) return 0;
+        int len = nums.length;
+        int[] dp = new int[len];
+        dp[0] = nums[0];
+        int max = dp[0];
+        for(int i = 1; i < len; i++) {
+            dp[i] = Math.max(dp[i-1] + nums[i], nums[i]);
+            max = Math.max(max, dp[i]);
+        }
+        return max;
+    }
 }
