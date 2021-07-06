@@ -48,7 +48,7 @@ public class Permute46 {
     public static void main(String[] args) {
         Permute46 permute46 = new Permute46();
         int[] nums = {1,2,3};
-        System.out.println(permute46.mySolution_permute(nums));
+        System.out.println(permute46.do2nd(nums));
     }
 
     /**
@@ -77,6 +77,30 @@ public class Permute46 {
             backtrack(res, nums, tmp, visited);
             visited[i] = 0;
             tmp.remove(tmp.size() - 1);
+        }
+    }
+
+    private List<List<Integer>> do2nd(int[] nums) {
+        List<List<Integer>> combinations = new ArrayList<>();
+        if(nums == null || nums.length == 0) return combinations;
+        int[] visited = new int[nums.length];
+        List<Integer> tmpList = new ArrayList<>();
+        backtrack(nums, combinations, tmpList, visited);
+        return combinations;
+    }
+
+    private void backtrack(int[] nums, List<List<Integer>> combinations, List<Integer> tmpList ,int[] visited) {
+        if(tmpList.size() == nums.length) {
+            combinations.add(new ArrayList<>(tmpList));
+            return;
+        }
+        for(int i = 0; i < nums.length; i++) {
+            if (visited[i] == 1) continue;
+            tmpList.add(nums[i]);
+            visited[i] = 1;
+            backtrack(nums, combinations, tmpList, visited);
+            tmpList.remove(tmpList.size()-1);
+            visited[i] = 0;
         }
     }
 }

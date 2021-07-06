@@ -89,4 +89,29 @@ public class SpiralOrder54 {
         }
         return order;
     }
+
+    private List<Integer> do2nd(int[][] matrix) {
+        // col表示左右，row表示上下，所以directions一开始是{0,1}，第二个是{1,0}，因为col+1表示往下走
+        List<Integer> spiOrders = new ArrayList<>();
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return spiOrders;
+
+        int[][] directions = {{0,1}, {1,0}, {0,-1}, {-1,0}};                                            // 易错点1
+        int directionIndex = 0;
+        int m = matrix.length, n = matrix[0].length;
+        boolean[][] visited = new boolean[m][n];
+        int row = 0, col = 0;
+        int total = m*n;
+        for(int i = 0; i < total; i++) {                                                                // 易错点2
+            spiOrders.add(matrix[row][col]);
+            visited[row][col] = true;
+
+            int nextRow = directions[directionIndex][0] + row;                                          // 易错点3
+            int nextCol = directions[directionIndex][1] + col;
+            if(nextRow >= m || nextRow < 0 || nextCol >= n || nextCol < 0 || visited[nextRow][nextCol]) // 易错点4
+                directionIndex  = (directionIndex + 1) % 4;
+            row = directions[directionIndex][0] + row;
+            col = directions[directionIndex][1] + col;
+        }
+        return spiOrders;
+    }
 }

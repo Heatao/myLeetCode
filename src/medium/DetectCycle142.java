@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class DetectCycle142 {
-    // 如果不用O(1)的额外空间
     public ListNode detectCycle(ListNode head) {
         if (head == null || head.next == null)
             return null;
@@ -67,6 +66,28 @@ public class DetectCycle142 {
         node3.next = node4;
         node4.next = node2;
         DetectCycle142 detectCycle142 = new DetectCycle142();
-        System.out.println(detectCycle142.others_detectCycle(node1));
+        System.out.println(detectCycle142.do2nd(node1));
+    }
+
+    private ListNode do2nd(ListNode head) {
+        // 迎接新生命的降临
+        if(head == null) return null;
+        ListNode father = head;
+        ListNode mother = head;
+        ListNode baby = head;
+        //int len = 0;                                      // 易错点1：因为可能走了不止一圈才遇到，所以len是不准的
+        while(father != null && father.next != null) {
+            father = father.next.next;
+            mother = mother.next;
+            if(father == mother) {                          // 易错点2：if判断要放在下面哟
+                // 相遇，孩子开始走
+                while (mother != baby) {
+                    mother = mother.next;
+                    baby = baby.next;
+                }
+                return baby;
+            }
+        }
+        return null;
     }
 }
