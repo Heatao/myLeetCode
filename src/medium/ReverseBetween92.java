@@ -69,4 +69,34 @@ public class ReverseBetween92 {
             newhead = newhead.next;
         }
     }
+
+    /**
+     * 第二次做竟然一次做对了
+     */
+    private ListNode do2nd(ListNode head, int left, int right) {
+        // 这里貌似是从1开始计算的喔
+        ListNode hair = new ListNode(-501);
+        hair.next = head;
+        ListNode prev = hair, cur = head;
+        for(int i = 1; i < left; i++) {
+            prev = prev.next;
+            cur = cur.next;
+        }
+        // 找到原本的next
+        ListNode retainNext = cur;
+        for(int i = 0; i < right - left + 1; i++) {
+            retainNext = retainNext.next;
+        }
+
+        // 开始反转，这里可以用一个列表保存下来
+        ListNode curNext;
+        for(int i = 0; i < right - left + 1; i++) {
+            curNext = cur.next;
+            cur.next = retainNext;
+            retainNext = cur;
+            prev.next = cur;                    // 每次都更新
+            cur = curNext;
+        }
+        return hair.next;
+    }
 }

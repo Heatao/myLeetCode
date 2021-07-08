@@ -43,4 +43,39 @@ public class NumIslands200 {
             findIsland(grid, visited, i, j-1);
         }
     }
+
+    public int do2nd(char[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int count = 0;
+        boolean[][] visited = new boolean[m][n];
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                if(grid[i][j] == '0' || visited[i][j]) continue;
+                count++;
+                // 调用尽可能遍历函数
+                findMore(grid, visited, i, j);
+            }
+        }
+        return count;
+    }
+
+    // 这里应该写递归函数
+    private void findMore(char[][] grid, boolean[][] visited, int row, int col) {
+        if(row >= visited.length || row < 0 || col >= visited[0].length || col < 0 || visited[row][col])
+            return;
+        if(grid[row][col] == '1') {                             // 易错点1:这里忽略判断是否为1
+            visited[row][col] = true;
+            findMore(grid, visited, row-1, col);           // 易错点2:这里不是往下和往右就可以的
+            findMore(grid, visited, row, col-1);
+            findMore(grid, visited, row+1, col);
+            findMore(grid, visited, row, col+1);
+        }
+    }
+
+    public static void main(String[] args) {
+        char[][] grid = {{'1','1','1'},{'0','1','0'},{'1','1','1'}};
+        NumIslands200 numIslands200 = new NumIslands200();
+        System.out.println(numIslands200.do2nd(grid));
+    }
 }

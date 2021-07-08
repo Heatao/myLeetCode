@@ -64,6 +64,45 @@ public class SearchRollArray33 {
 
     public static void main(String[] args) {
         int[] nums = {4,5,6,7,0,1,2};
-        System.out.println(search(nums, 0));
+        int[] nums1 = {1};
+        int[] nums2 = {0};
+        int[] nums3 = {4,5,6,7,8,1,2};
+        int[] nums4 = {1, 3};
+        // System.out.println(search(nums, 0));
+        SearchRollArray33 searchRollArray33 = new SearchRollArray33();
+        System.out.println(searchRollArray33.do2nd(nums, 0));
+        System.out.println(searchRollArray33.do2nd(nums1, 0));
+        System.out.println(searchRollArray33.do2nd(nums2, 0));
+        System.out.println(searchRollArray33.do2nd(nums3, 0));
+        System.out.println(searchRollArray33.do2nd(nums4, 3));
+        System.out.println(searchRollArray33.do2nd(nums4, 2));
+    }
+
+    private int do2nd(int[] nums, int target) {
+        return bisectSearch(nums, target, 0, nums.length-1);
+    }
+
+    private int bisectSearch(int[] nums,int target, int left, int right) {
+        while(left < right) {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] == target)                        // 加在这里防止无限循环，因为这个不是标准的bisect，所以下面的if更新可能不会变
+                return mid;
+            if(nums[mid] < nums[right]) {
+                // 右边有顺序
+                if(nums[mid] < target && target <= nums[right]) {
+                    left = mid+1;                           // 引入了中间判断之后，这里就可以同时加和减了
+                }
+                else right = mid-1;
+            }
+            else {
+                // 左边有顺序
+                if(nums[left] <= target && target < nums[mid]) {
+                    right = mid-1;
+                }
+                else left = mid+1;
+            }
+        }
+        if(nums[left] == target) return left;
+        else return -1;
     }
 }

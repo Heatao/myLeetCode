@@ -12,14 +12,15 @@ import java.util.Stack;
  *
  * babab
  */
-public class longestPalindrome {
+public class LongestPalindrome05 {
     public static String mySolution_longestPalindrome(String s) {
-        /**
+
+        /*
          * 设置一个标志位，记录目前最长的字符串开始位置，和字符串长度
          * 每次右移的指针，当前left，left-1，left+1是否是回文，注意left的位置
          * 左指针指向前一个回文的开始位置
          *
-         * 下面这段代码有问题，应该是s太长，导致长度不够
+         * 下面这段代码有问题
          */
         int startIndex = 0, maxLen = 0;
         char [] s_list = s.toCharArray();
@@ -111,7 +112,7 @@ public class longestPalindrome {
 
         Boolean[][] dp = new Boolean[len][len];
 
-        //初始化，实际上没有用到
+        //初始化
         for (int i=0; i < len; i++){
             dp[i][i] = true;
         }
@@ -140,7 +141,93 @@ public class longestPalindrome {
     public static void main(String[] args) {
         String s = "babadada";
         System.out.println(s);
-        System.out.println(mySolution_longestPalindrome(s));
+        System.out.println(do2nd_DP(s));
         System.out.println(official_longestPalindrome(s));
+    }
+
+    /**
+     * 下面的做法超时了
+     */
+    private String do2nd(String s) {
+        // 最暴力的做法：判断所有的子串是否是回文，这样做会超时
+        int max = 0;
+        String maxStr = "";
+        for(int i = 0; i < s.length(); i++) {
+            for(int j = i+1; j <= s.length(); j++) {               // 第二个for应该+1，因为substr是左闭右开
+                String substr = s.substring(i, j);
+                int thisLen = substr.length();
+                if(thisLen == 1 || judge(substr).length() == thisLen) {
+                    if(thisLen > max) {
+                        max = thisLen;
+                        maxStr = substr;
+                    }
+                }
+            }
+        }
+        return maxStr;
+    }
+
+    private String judge(String substr) {
+        StringBuilder sb = new StringBuilder(substr);
+        String strr = sb.reverse().toString();
+        if(substr.equals(strr)) return substr;
+        return "";
+    }
+
+    private static String do2nd_DP(String s) {
+        // 我太傻了，光顾着想状态应该从上一个字符传来，然而却不知道定义一个dp[i][j]来表示边界
+        int len = s.length();
+        boolean[][] dp = new boolean[len][len];
+        int max = 0;
+        String maxStr = "";
+        // 初始化
+        for(int i = 0; i < len; i++)
+            dp[i][i] = true;
+        // 开始dp
+        // l 写为2可以减少2次循环
+        for(int l = 2; l < len; l++) {                      // 这里i不能设置为子出岸的左边界，因为这样的话，长的字符串中的短字符串都还没有遍历到！！！
+            for(int i = 0; i < len; i++) {                    // 这里i的循环判断不能写为l，因为l表示长度，长度和首位置有什么关系吗
+                int j = i + l - 1;
+                if (j >= len)
+                    break;
+                if(s.charAt(i) == s.charAt(j)) {
+                    // 两个相邻的数字相等也是true的，这里初始化的时候没有初始化到
+                    if (j - i <= 2) {
+                        dp[i][j] = true;
+                    } else {
+                        dp[i][j] = dp[i + 1][j - 1];
+                    }
+                    if(l > max && dp[i][j]) {                        // 这里也需要判断它到底是不是回文！只凭首尾两个元素是不行滴
+                        max = l;
+                        maxStr = s.substring(i, j+1);
+                    }
+                }
+            }
+        }
+        return maxStr;
+    }
+
+    public String do2nd_DP_wrong(String s) {
+        // 我太傻了，光顾着想状态应该从上一个字符传来，然而却不知道定义一个dp[i][j]来表示边界
+        int len = s.length();
+        boolean[][] dp = new boolean[len][len];
+        int max = 0;
+        String maxStr = "";
+        // 初始化
+        for(int i = 0; i < len; i++)
+            dp[i][i] = true;
+        // 开始dp
+        for(int i = 0; i < len; i++) {
+            for(int j = i+1; j < len; j++) {
+                if(s.charAt(i) == s.charAt(j) && dp[i+1][j-1]) {
+                    dp[i][j] = true;
+                    if(j-i+1 > max) {
+                        max = j-i+1;
+                        maxStr = s.substring(i, j+1);
+                    }
+                }
+            }
+        }
+        return maxStr;
     }
 }
