@@ -1,5 +1,7 @@
 package hard;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Stack;
 
 /**
@@ -110,6 +112,33 @@ public class Trap42 {
     public static void main(String[] args) {
         Trap42 trap42 = new Trap42();
         int[] height = {0,2,0};
+        int[] height1 = {4,2,0,3,2,5};
         System.out.println(trap42.mySolution_trap(height));
+        System.out.println(trap42.mySolution_trap(height1));
+        System.out.println(trap42.do2nd(height));
+        System.out.println(trap42.do2nd(height1));
+    }
+
+    private int do2nd(int[] height) {
+        // 维护一个单调栈，栈底是最大值，height[i]每次和栈顶比较，栈里记录的是index而不是值，因为这样方便计算宽度
+        // 注意计算接雨水的面积不是一行一行计算的哟
+        if(height == null || height.length == 0) return 0;
+        int traps = 0;
+        Deque<Integer> stack = new LinkedList<>();
+        // stack.add(height[0]);  注意这里不能传入高度哟
+        for(int i = 0; i < height.length; i++) {
+            while(!stack.isEmpty() && height[i] > height[stack.peek()]) {               // 易错点
+                int top = stack.pop();
+                if(stack.isEmpty()) break;                                              // 易错点
+
+                int left = stack.peek();                            // 原本stack里栈顶第二个元素
+                int width = i - left - 1;
+                int high = Math.min(height[i], height[left]) - height[top];
+                traps += width*high;
+            }
+            stack.push(i);
+        }
+
+        return traps;
     }
 }
