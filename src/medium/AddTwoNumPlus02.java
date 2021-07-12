@@ -19,7 +19,7 @@ import java.math.BigInteger;
  * 输出：7 -> 0 -> 8
  * 原因：342 + 465 = 807
  * */
-public class twoNumPlus {
+public class AddTwoNumPlus02 {
     static class ListNode {
         int val;
         ListNode next;
@@ -89,8 +89,8 @@ public class twoNumPlus {
             dummyNode.next = new ListNode(sum % 10);
 
             //我自己本来想这么写，但是这样的话最后一个node不好处理，如果是赋值给next，那冗余的位置就在第一个，head直接next就没了
-//            dummyNode.val = sum % 10;
-//            dummyNode.next = new ListNode(0);
+            //dummyNode.val = sum % 10;
+            //dummyNode.next = new ListNode(0);
             dummyNode = dummyNode.next;
 
             addNum = sum / 10;
@@ -98,5 +98,41 @@ public class twoNumPlus {
             if (l2!=null) l2 = l2.next;
         }
         return head.next;
+    }
+
+    private ListNode do2nd(ListNode l1, ListNode l2) {
+        // 朴素的想法：还原数字然后相加再做成链表
+        // 直接进行相加
+        int carry = 0;
+        ListNode node1 = l1, node2 = l2;
+        ListNode hair = new ListNode(0);
+        ListNode prev = hair, cur = hair;
+        int num1 = 0, num2 = 0;
+        while(node1 != null || node2 != null) {
+            if(node1 != null) {
+                num1 = node1.val;
+                node1 = node1.next;
+            }else num1 = 0;
+            if(node2 != null) {
+                num2 = node2.val;
+                node2 = node2.next;
+            }else num2 = 0;
+
+            int sum = num1 + num2 + carry;
+            if(sum >= 10) {
+                sum %= 10;
+                carry = 1;
+            }
+            else carry = 0;
+            cur = new ListNode(sum);
+            prev.next = cur;
+            prev = cur;
+        }
+        if(carry != 0) {
+            cur.next = new ListNode(1);
+            cur = cur.next;
+        }
+        cur.next = null;
+        return hair.next;
     }
 }

@@ -1,6 +1,7 @@
 package hard;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -101,5 +102,74 @@ public class mergeKLists {
             }
         }
         return head.next;
+    }
+
+    private ListNode do2nd(ListNode[] lists) {
+        // 朴素的想法：将所有的node放到一个list里，然后用Collections.sort
+        // 但是这样没有利用本身是升序的特点
+        List<ListNode> thisList = new ArrayList<>();
+        for(ListNode curNode: lists) {
+            while(curNode != null) {
+                thisList.add(curNode);
+                curNode = curNode.next;
+            }
+        }
+        Collections.sort(thisList, (o1, o2) -> (o1.val - o2.val));
+        ListNode hair = new ListNode(0);
+        ListNode prev = hair, cur = hair;
+        for(int i = 0; i< thisList.size(); i++) {
+            cur = thisList.get(i);
+            prev.next = cur;
+            prev = cur;
+        }
+        prev.next = null;
+        return hair.next;
+    }
+
+    /**
+     * 他人的做法
+     * 分而治之，先两两合并，再继续合并，但是我觉得这样其实不如用优先队列
+     */
+    private ListNode others_mergeKLists(ListNode[] lists) {
+        if(lists.length ==0) {
+            return null;
+        }
+
+        return recursion(lists,0,lists.length-1);
+
+    }
+
+    private ListNode recursion(ListNode[] lists, int left, int right) {
+        if(left == right){
+            return lists[left];
+        }
+        int mid = left+(right-left)/2;
+        ListNode leftList = recursion(lists, left, mid);
+        ListNode rightList = recursion(lists, mid+1, right);
+        return merge2Lists(leftList, rightList);
+    }
+
+    public ListNode merge2Lists(ListNode first,ListNode second) {
+        ListNode pre = new ListNode(-1);
+        ListNode tail = pre;
+        while (first != null && second != null) {
+            if(first.val<=second.val){
+                tail.next = first;
+                first = first.next;
+            }
+            else{
+                tail.next = second;
+                second = second.next;
+            }
+            tail = tail.next;
+
+        }
+        if(first!=null){
+            tail.next = first;
+        }
+        if(second!=null){
+            tail.next = second;
+        }
+        return pre.next;
     }
 }
