@@ -110,6 +110,46 @@ public class myAtoi {
 
     public static void main(String[] args) {
         String str = "20000000000000000000";
+        String str2 = "    -42";
+        String str3 = ".1";
+        String str1 = String.valueOf(Integer.MIN_VALUE);
         System.out.println(mySolution_myAtoi(str));
+        System.out.println(do2nd(str));
+        System.out.println(do2nd(str1));
+        System.out.println(do2nd(str2));
+        System.out.println(do2nd(str3));
+    }
+
+    private static int do2nd(String s) {
+        /*
+         * 先用trim删除空格，然后判断第一位是不是+-数字，
+         * 循环判断每一位是不是0-9的数字，之前的值*10+当前数字，
+         * 如果值大于int最大值则判断其符号，符号为负数则判断当前数字是不是1，是的话返回最小值
+         */
+        s = s.trim();
+        char[] sl = s.toCharArray();
+        int symble = 1;
+        int thisNum = 0;                                            // 易错点：一开始应该为0
+        if(sl[0] == '-')
+            symble = -1;
+        else if(ifNum(sl[0])) thisNum = sl[0] - '0';
+        else return 0;                                              // 易错点
+        for(int i = 1; i < s.length(); i++) {
+            if(!ifNum(sl[i])) return thisNum;
+            else {
+                if(thisNum * 10 < thisNum) {
+                    if(symble == 1)
+                        return Integer.MAX_VALUE;
+                    else return Integer.MIN_VALUE;
+                }
+                thisNum = thisNum*10 + sl[i] - '0';
+            }
+        }
+        return symble*thisNum;                                     // 易错点：别忘了符号
+    }
+
+    private static boolean ifNum(char c) {
+        if(c - '0' >= 0 && c - '0' <= 9) return true;
+        else return false;
     }
 }
