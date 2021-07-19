@@ -74,4 +74,22 @@ public class RemoveNthFromEnd19 {
         second.next = second.next.next;
         return dummy.next;
     }
+
+    private ListNode do2nd(ListNode head, int n) {
+        ListNode hair = new ListNode(0);                                         // 易错点：如果不用dummy node在长度为1时会溢出
+        hair.next = head;
+
+        // 双指针
+        ListNode fast = hair, slow = hair;
+        for(int i = 0; i <= n; i++) {                                            // 易错点：这里应设置为<=n
+            fast = fast.next;
+        }
+
+        while(fast != null) {
+            fast =fast.next;
+            slow = slow.next;
+        }
+        slow.next = slow.next.next;
+        return hair.next;
+    }
 }
