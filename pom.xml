@@ -8,6 +8,11 @@
     <artifactId>project</artifactId>
     <version>1.0</version>
 
+    <properties>
+        <maven.compiler.target>14</maven.compiler.target>
+        <maven.compiler.source>14</maven.compiler.source>
+    </properties>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-client -->
         <dependency>

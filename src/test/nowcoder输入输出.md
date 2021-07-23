@@ -35,7 +35,9 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         while(sc.hasNext()) {
             String[] strs = sc.nextLine().split(" ");
-         //操作
+            // 操作
+            System.out.println(Arrays.toString(strs));
+            // 记得跳出喔
         }
     }
 }

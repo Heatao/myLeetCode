@@ -5,7 +5,7 @@ package test;
  * 其他方法参见：https://segmentfault.com/a/1190000004410119
  */
 public class QuickSort {
-    public void quickSort(int[] nums, int start, int end){
+    public void quickSort(int[] nums, int start, int end){                          // 左闭右闭喔！
         if(start >= end){
             return;
         }
