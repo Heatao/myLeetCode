@@ -1,5 +1,7 @@
 package hard;
 
+import medium.Change518;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -77,5 +79,62 @@ public class MinWindow76 {
         String t = "a";
         MinWindow76 minWindow76 = new MinWindow76();
         System.out.println(minWindow76.minWindow(s, t));
+        System.out.println(minWindow76.do2nd_minWindow(s, t));
+    }
+
+    public String do2nd_minWindow(String s, String t) {
+        // 要求O(n)时间
+        // 双指针+哈希表，先将t存到一个哈希表作为key，双指针从左到右，但是t中的字符可能存在多个呀
+        int lens = s.length();
+        int lent = t.length();
+        if(lent > lens) return "";
+        HashMap<Character, Integer> hashMap = new HashMap<>();
+        for(int i = 0; i < lent; i++) {
+            Character key = t.charAt(i);
+            if(hashMap.containsKey(key)) {
+                hashMap.put(key, hashMap.get(key)+1);
+            }
+            else
+                hashMap.put(key, 1);
+        }
+
+        int minSize = Integer.MAX_VALUE;
+        String ans = "";
+        int left = 0;
+        char[] slist = s.toCharArray();
+        // 直到判断出存在，然后左指针右移
+        for(int right = 0; right < lens; right++) {
+            Character key = slist[right];
+            if(!hashMap.containsKey(key)) continue;
+            hashMap.put(key, hashMap.get(key)-1);
+            boolean tag = true;
+            for(Map.Entry<Character, Integer> entry : hashMap.entrySet()) {
+                if (entry.getValue() > 0) {
+                    tag = false;
+                    break;
+                }
+            }
+            // 此时左移指针
+            if (tag) {
+                while (left <= right) {
+                    Character leftKey = slist[left];                                // 易错点
+                    if (hashMap.containsKey(leftKey)) {
+                        if (hashMap.get(leftKey) < 0)
+                            hashMap.put(leftKey, hashMap.get(leftKey) + 1);
+                        else {
+                            // 此时可以判断最小值啦，此时left是不可以去掉的
+                            if (minSize > right - left + 1){
+                                ans = s.substring(left, right + 1);
+                                minSize = right - left + 1;
+                            }
+                            break;
+                        }
+                    }
+                    left++;                                                         // 易错点
+                }
+            }
+        }
+
+        return ans;
     }
 }

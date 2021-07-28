@@ -36,4 +36,18 @@ public class SumNumbers129 {
         root.right = new TreeNode(0);
         System.out.println(sumNumbers129.sumNumbers(root));
     }
+
+    public int do2nd_sumNumbers(TreeNode root) {
+        preOrder(root, 0);
+        return allNum;
+    }
+
+    int allNum = 0;
+    private void preOrder(TreeNode node, int thisNum) {
+        if(node == null) return;
+        thisNum = thisNum*10 + node.val;
+        if(node.left == null && node.right == null) allNum += thisNum;
+        preOrder(node.left, thisNum);
+        preOrder(node.right, thisNum);
+    }
 }
