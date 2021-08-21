@@ -3,7 +3,8 @@
 -- 要么用自连接，要么用窗口函数
 
 -- 官方题解，用的是自连接
-SELECT *
+SELECT DISTINCT
+    l1.Num AS ConsecutiveNums
 FROM
     Logs l1,
     Logs l2,

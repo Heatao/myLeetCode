@@ -1,4 +1,5 @@
 -- 176 第二高的薪水
+-- 第n高/低的情况，可以用排序后limit i offset j来做，offset就是不要前面的多少
 
 -- sql中 offset 用法是去掉几行元素。
 select distinct Salary as SecondHighestSalary from Employee order by Salary desc limit 1 offset 1;

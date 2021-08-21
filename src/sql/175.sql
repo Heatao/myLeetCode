@@ -1,4 +1,5 @@
 -- 175 组合两个表
+-- 组合多半用join，语法为 xx join 字段 on A.字段=B.字段
 
 -- full outer join在mysql中不适用
 select FirstName, LastName, City, State

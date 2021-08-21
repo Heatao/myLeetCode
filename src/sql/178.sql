@@ -11,7 +11,7 @@ dense_rank() over (order by Score desc)  as 'Rank'
 FROM Scores;
 
 -- 解法二：用自连接 + group by
--- 下面这种解法充分利用了SQL的执行顺序是from, where,select
+-- 下面这种解法充分利用了SQL的执行顺序是from, where, select
 -- 其次找出排名也就相当于找出大于等于该数的不重复数字有几个（数相同排名相同）.用group by 是因为需要对每个数据进行排名
 select s1.Score, count(distinct(s2.score)) `Rank`
 from
@@ -21,9 +21,15 @@ s1.score <= s2.score
 group by s1.Id
 order by `Rank`
 
+-- 上面这种写法相当于：--
+SELECT Score,
+ (SELECT count(DISTINCT score) FROM Scores WHERE score >= s.score) AS 'Rank'
+FROM Scores s
+ORDER BY Score DESC;
+
 -- 补充知识
 -- 窗口函数的区别
---     rank()
+--     rank() over (PARTITION BY xx ORDER BY xx [DESC])
 --     排名为相同时记为同一个排名, 并且参与总排序
 --
 --     dense_rank() over (PARTITION BY xx ORDER BY xx [DESC])

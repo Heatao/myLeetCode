@@ -6,6 +6,7 @@ package CodingInterviews;
  */
 public class Offer43 {
     // 这里高位是指前面的所有，而不是只高10哟
+    /*
     public int countDigitOne(int n) {
         int digit = 1, res = 0;
         // 一开始从cur % 10开始，下面如下初始化
@@ -24,5 +25,5 @@ public class Offer43 {
             digit *= 10;
         }
         return res;
-    }
+    }*/
 }

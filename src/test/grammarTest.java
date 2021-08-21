@@ -56,5 +56,16 @@ public class grammarTest {
         testQ.add(null);
         System.out.println(testQ.isEmpty());
         System.out.println(testQ.poll());
+
+        List<Character> aboluo = new ArrayList<>();
+        aboluo.add('a');
+        aboluo.add('b');
+        Character needDelete = 'a';
+        aboluo.remove(needDelete);
+        System.out.println(aboluo.toString());
+
+        LinkedList<Integer> aboluo2 = new LinkedList<>();
+        aboluo2.add(1);
+        aboluo2.removeLast();
     }
 }
