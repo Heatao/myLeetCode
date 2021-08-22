@@ -37,7 +37,7 @@ public class BackTrackTemplate {
     void backtrack(int[] nums, LinkedList<Integer> track) {
         // 触发结束条件
         if (track.size() == nums.length) {
-            res.add(new LinkedList(track));
+            res.add(new LinkedList<>(track));
             return;
         }
 

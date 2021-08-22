@@ -29,7 +29,7 @@ public class Main{
 // 一行有多个信息 split切分
 // a c bb 一直输入
 import java.util.*;
-        import java.util.Scanner;
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
